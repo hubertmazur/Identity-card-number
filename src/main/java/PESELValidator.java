@@ -4,7 +4,7 @@ public class PESELValidator {
 
     public Boolean validate (String PESEL) {
       PESEL = PESEL.trim();
-      if (!PESEL.matches("[0-1]{11}")) {
+      if (!PESEL.matches("[0-9]{11}")) {
           return false;
       }
       int temp = 0;
