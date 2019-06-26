@@ -1,27 +1,31 @@
-import java.util.Scanner;
+import javax.swing.*;
+
 
 public class Main {
-
     public static void main(String[] args) {
-        CheckingIDCardNumber checkingIDCardNumber = new CheckingIDCardNumber();
-        int validation = 0;
-        System.out.println("===Program sprawdza poprawność nr dowodu osobistego===");
-        while (true) {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Wprowadz serię i numer dowodu osobistego: ");
-            String IDNumber = sc.nextLine();
 
-            if (checkingIDCardNumber.verification(IDNumber)) {
-                System.out.println("Twój nr dowodu osobistego jest poprawny.");
+        CheckingIDCardNumber checkingIDCardNumber = new CheckingIDCardNumber();
+        PESELValidator validator = new PESELValidator();
+
+
+        int counter = 0;
+        int maximumNumberOfErrors = 5 ;
+
+        while (counter  < maximumNumberOfErrors) {
+
+            String input = JOptionPane.showInputDialog("Wprowadz nr dowodu osobistego bądz nr PESEL");
+            if (checkingIDCardNumber.verification(input)) {
+                JOptionPane.showMessageDialog(null, "Twój nr dowodu osobistego jest poprawny. ");
+            }
+            if (validator.validate(input)) {
+                JOptionPane.showMessageDialog(null, "Twój nr PESEL jest poprawny.");
             }
             else {
-                System.out.println("Wprowadzono błędne dane ! Spróbuj jescze raz.");
-                validation++;
-            }
-            if (validation == 5 ) {
-                System.out.println("Wprowadzono błędne dane " + validation + " razy. Program kończy swoje działanie.");
-                System.exit(0);
+                JOptionPane.showMessageDialog(null, "Wprowadzono błędne dane.");
+                counter++;
+
             }
         }
+
     }
 }
