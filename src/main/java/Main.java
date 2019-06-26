@@ -21,7 +21,8 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Twój nr PESEL jest poprawny.");
             }
             else {
-                JOptionPane.showMessageDialog(null, "Wprowadzono błędne dane.");
+                JOptionPane.showMessageDialog(null, "Wprowadzono błędne dane lub " +
+                        "wpropwadzony nr dowodu bądz PESEL jest nie poprwany.");
                 counter++;
 
             }
